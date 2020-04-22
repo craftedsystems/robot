@@ -1,5 +1,5 @@
 import { h, html, Component, render } from './preact.js';
-import { createMachine, guard, immediate, interpret, reduce, state, transition } from './machine.js';
+import { createMachine, guard, immediate, interpret, reduce, state, transition } from '../machine.js';
 
 function fromEvent(send, type) {
   return event => send({ type, event });
@@ -67,23 +67,23 @@ const machine = createMachine({
 class App extends Component {
     constructor(...args) {
       super(...args);
-      
+
       let service = interpret(machine, service => {
         this.setState({ send: service.send, service });
       });
-      
+
       this.state = {
         send: service.send,
         service
       };
     }
-  
+
   render() {
     let { service, send } = this.state;
     let { login, error } = service.context;
     let { current: state } = service.machine;
-    
-    
+
+
     return html`
       <div>
         ${state === 'complete' ? html`

@@ -1,4 +1,4 @@
-import { guard, state, transition, createMachine, interpret, reduce } from './machine.js';
+import { guard, state, transition, createMachine, interpret, reduce } from '../machine.js';
 
 const setFirst = (ctx, ev) => ({ ...ctx, first: ev.target.value });
 const setLast = (ctx, ev) => ({ ...ctx, last: ev.target.value });

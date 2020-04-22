@@ -1,4 +1,4 @@
-import { createMachine, interpret, state, transition } from './machine.js';
+import { createMachine, interpret, state, transition } from '../machine.js';
 
 let machine = createMachine({
   red: state(

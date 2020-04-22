@@ -1,4 +1,4 @@
-import { state, transition, createMachine, guard, interpret, reduce } from './machine.js';
+import { state, transition, createMachine, guard, interpret, reduce } from '../machine.js';
 
 const machine = createMachine({
   idle: state(

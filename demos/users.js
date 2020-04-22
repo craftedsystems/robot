@@ -1,4 +1,4 @@
-import { invoke, state, transition, createMachine, interpret, reduce } from './machine.js';
+import { invoke, state, transition, createMachine, interpret, reduce } from '../machine.js';
 
 const context = () => ({
   users: []
