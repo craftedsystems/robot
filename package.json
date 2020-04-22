@@ -15,6 +15,8 @@
     "minify": "terser machine.js -o machine.min.js",
     "bundlesize": "npm run minify && bundlesize --config bundlesize.json",
     "server": "http-server -p 1965",
+    "lint": "eslint machine.js",
+    "lint:fix": "eslint machine.js --fix",
     "test": "node-qunit-puppeteer http://localhost:1965/test/test.html 10000",
     "build": "rollup -d dist -f cjs machine.js debug.js",
     "preversion": "npm run build"
@@ -36,6 +38,8 @@
     "@11ty/eleventy": "^0.11.0-beta.3",
     "@11ty/eleventy-plugin-syntaxhighlight": "^2.0.3",
     "bundlesize": "^0.18.0",
+    "eslint": "^6.8.0",
+    "eslint-config-synacor": "^3.0.5",
     "http-server": "^0.12.1",
     "markdown-it": "^9.1.0",
     "markdown-it-toc-and-anchor": "^4.2.0",
