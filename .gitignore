@@ -1,5 +1,6 @@
-node_modules/
+__*
 _site/
 .DS_Store
-machine.min.js
 dist/
+machine.min.js
+node_modules/
