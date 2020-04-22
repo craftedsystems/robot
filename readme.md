@@ -42,6 +42,19 @@ Robot works with a variety of UI libraries, and includes integrations for React,
 npm run server
 ```
 
+## Development
+
+```sh
+# Install dependencies
+npm i
+
+# Lint
+npm run lint
+
+# Lint and --fix
+npm run lint:fix
+```
+
 ## License
 
 BSD-2-Clause
