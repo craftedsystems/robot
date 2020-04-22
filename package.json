@@ -15,8 +15,8 @@
     "minify": "terser machine.js -o machine.min.js",
     "bundlesize": "npm run minify && bundlesize --config bundlesize.json",
     "server": "http-server -p 1965",
-    "lint": "eslint machine.js",
-    "lint:fix": "eslint machine.js --fix",
+    "lint": "eslint **/*.js",
+    "lint:fix": "eslint **/*.js --fix",
     "test": "node-qunit-puppeteer http://localhost:1965/test/test.html 10000",
     "build": "rollup -d dist -f cjs machine.js debug.js",
     "preversion": "npm run build"
@@ -46,5 +46,9 @@
     "node-qunit-puppeteer": "^1.1.1",
     "rollup": "^1.32.1",
     "terser": "^4.6.11"
-  }
+  },
+  "eslintIgnore": [
+    "doc/*",
+    "test/*"
+  ]
 }

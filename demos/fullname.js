@@ -1,9 +1,7 @@
-import { guard, state, transition, createMachine, interpret, reduce } from '../machine.js';
+import { state, transition, createMachine, interpret, reduce } from '../machine.js';
 
 const setFirst = (ctx, ev) => ({ ...ctx, first: ev.target.value });
 const setLast = (ctx, ev) => ({ ...ctx, last: ev.target.value });
-const nothingEntered = ({ first, last }) => !first && !last;
-const somethingEntered = (ctx) => !nothingEntered(ctx);
 
 const machine = createMachine({
   waiting: state(
@@ -13,7 +11,7 @@ const machine = createMachine({
     transition('last', 'waiting',
       reduce(setLast)
     )
-  )
+  ),
 });
 
 const name = document.querySelector('#name');

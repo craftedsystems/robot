@@ -12,7 +12,7 @@ function canSubmit(ctx) {
 function updateSubmissionError(ctx) {
   return {
     ...ctx,
-    error: 'Missing fields'
+    error: 'Missing fields',
   };
 }
 
@@ -27,14 +27,14 @@ function clearError(ctx) {
 function setLogin(ctx, { event }) {
   return {
     ...ctx,
-    login: event.target.value
+    login: event.target.value,
   };
 }
 
 function setPassword(ctx, { event }) {
   return {
     ...ctx,
-    password: event.target.value
+    password: event.target.value,
   };
 }
 
@@ -61,22 +61,22 @@ const machine = createMachine({
       reduce(updateSubmissionError)
     )
   ),
-  complete: state()
+  complete: state(),
 }, context);
 
 class App extends Component {
-    constructor(...args) {
-      super(...args);
+  constructor(...args) {
+    super(...args);
 
-      let service = interpret(machine, service => {
-        this.setState({ send: service.send, service });
-      });
+    let service = interpret(machine, service => {
+      this.setState({ send: service.send, service });
+    });
 
-      this.state = {
-        send: service.send,
-        service
-      };
-    }
+    this.state = {
+      send: service.send,
+      service,
+    };
+  }
 
   render() {
     let { service, send } = this.state;

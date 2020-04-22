@@ -9,7 +9,7 @@ let machine = createMachine({
   ),
   green: state(
     transition('next', 'yellow')
-  )
+  ),
 });
 
 const light = document.querySelector('#light');

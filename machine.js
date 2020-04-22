@@ -56,7 +56,7 @@ function makeTransition(from, to, ...args) {
     from: valueEnumerable(from),
     to: valueEnumerable(to),
     guards: valueEnumerable(guards),
-    reducers: valueEnumerable(reducers)
+    reducers: valueEnumerable(reducers),
   });
 }
 
@@ -85,7 +85,7 @@ export function state(...args) {
   let immediates = filter(immediateType, args);
   let desc = {
     final: valueEnumerable(args.length === 0),
-    transitions: valueEnumerable(transitionsToMap(transitions))
+    transitions: valueEnumerable(transitionsToMap(transitions)),
   };
   if (immediates.length) {
     desc.immediates = valueEnumerable(immediates);
@@ -101,7 +101,7 @@ let invokePromiseType = {
       .then((data) => service.send({ type: 'done', data }))
       .catch((error) => service.send({ type: 'error', error }));
     return machine;
-  }
+  },
 };
 
 let invokeMachineType = {
@@ -129,7 +129,7 @@ let invokeMachineType = {
       );
     }
     return machine;
-  }
+  },
 };
 
 function machineToThen(fn) {
@@ -142,11 +142,11 @@ export function invoke(fn, ...transitions) {
   return machine.isPrototypeOf(fn)
     ? create(invokeMachineType, {
       machine: valueEnumerable(fn),
-      transitions: t
+      transitions: t,
     })
     : create(invokePromiseType, {
       fn: valueEnumerable(machine.isPrototypeOf(fn) ? machineToThen(fn) : fn),
-      transitions: t
+      transitions: t,
     });
 }
 
@@ -154,9 +154,9 @@ let machine = {
   get state() {
     return {
       name: this.current,
-      value: this.states[this.current]
+      value: this.states[this.current],
     };
-  }
+  },
 };
 
 export function createMachine(current, states, contextFn = empty) {
@@ -169,7 +169,7 @@ export function createMachine(current, states, contextFn = empty) {
   return create(machine, {
     context: valueEnumerable(contextFn),
     current: valueEnumerable(current),
-    states: valueEnumerable(states)
+    states: valueEnumerable(states),
   });
 }
 
@@ -182,7 +182,7 @@ function transitionTo(service, machine, fromEvent, candidates) {
       let original = machine.original || machine;
       let newMachine = create(original, {
         current: valueEnumerable(to),
-        original: { value: original }
+        original: { value: original },
       });
 
       let state = newMachine.state.value;
@@ -211,14 +211,14 @@ let service = {
 
     // TODO detect change
     this.onChange(this);
-  }
+  },
 };
 
 export function interpret(machine, onChange, initialContext, event) {
   let s = Object.create(service, {
     machine: valueEnumerableWritable(machine),
     context: valueEnumerableWritable(machine.context(initialContext, event)),
-    onChange: valueEnumerable(onChange)
+    onChange: valueEnumerable(onChange),
   });
   s.send = s.send.bind(s);
   s.machine = s.machine.state.value.enter(s.machine, s, event);

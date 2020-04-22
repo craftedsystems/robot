@@ -3,14 +3,14 @@ import { state, transition, createMachine, guard, interpret, reduce } from '../m
 const machine = createMachine({
   idle: state(
     transition('inc', 'idle',
-      reduce(({count}) => ({ count: count + 1 })),
-      guard(({count}) => count < 10)
+      reduce(({ count }) => ({ count: count + 1 })),
+      guard(({ count }) => count < 10)
     ),
     transition('dec', 'idle',
-      reduce(({count}) => ({ count: count - 1 })),
-      guard(({count}) => count > 0)
+      reduce(({ count }) => ({ count: count - 1 })),
+      guard(({ count }) => count > 0)
     )
-  )
+  ),
 }, () => ({ count: 0 }));
 
 const inc = document.querySelector('#inc');
